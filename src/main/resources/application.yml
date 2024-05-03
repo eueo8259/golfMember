@@ -1,0 +1,21 @@
+#mysql \uC5F0\uACB0\uD558\uAE30
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/golfMember
+    username: root
+    password: 1111
+
+  sql:
+    init:
+      mode: always
+  #spring:  \uC2A4\uD504\uB9C1 \uBC14\uB85C \uC544\uB798\uC5D0 \uC788\uC5B4\uC57C \uD568 \uB4E4\uC5EC\uC4F0\uAE30\uAC00 \uC911\uC694\uD558\uB2E4 datasource\uB791 \uAC19\uC740\uC904
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect

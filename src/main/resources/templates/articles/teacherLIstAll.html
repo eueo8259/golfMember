@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf/org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="content" layout:fragment="content">
+    <table class="table">
+        <tr>
+            <th>강사코드</th>
+            <th>강사명</th>
+            <th>강의명</th>
+            <th>수강료</th>
+            <th>강사자격취득일</th>
+        </tr>
+        <tr th:each="teacher : ${teacherDto}" th:object="${teacher}">
+            <td th:text="*{teacherId}"><</td>
+            <td th:text="*{teacherName}"></td>
+            <td th:text="*{className}"><</td>
+            <td>
+                <!-- 수강료를 천 단위로 쉼표(,)를 포함하여 출력 -->
+                <span th:text="${#numbers.formatInteger(teacher.classPrice, 0, 'COMMA')} + '원'"></span>
+            </td>
+<!--            <td th:text="*{certificationDate}"></td>-->
+            <td>
+                <!-- certificationDate에서 년/월/일 추출하여 표시 -->
+                <span th:if="${teacher.certificationDate != null}">
+                    <span th:text="${teacher.certificationDate.substring(0, 4) + '년 ' + teacher.certificationDate.substring(4, 6) + '월 '
+                     + teacher.certificationDate.substring(6) + '일'}"></span>
+                </span>
+                <span th:if="${teacher.certificationDate == null}">날짜 없음</span>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
